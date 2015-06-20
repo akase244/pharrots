@@ -3,7 +3,6 @@ cheerio = require 'cheerio'
 
 module.exports = (robot) ->
     robot.respond /(cur|old)/i, (msg) ->
-        msg.send msg.match[0]
         msg.send msg.match[1]
         msg.send msg.match[2]
 
@@ -18,5 +17,5 @@ module.exports = (robot) ->
 
             $('.release-state').each ->
                 releaseState = $ @
-                if releaseState.text() is 'Current Stable'
+                if (msg.match[1] and releaseState.text() is 'Current Stable') or (msg.match[2] and releaseState.text() is 'Old Stable')
                     msg.send releaseState.parent().attr('id').replace(/v/, '')
