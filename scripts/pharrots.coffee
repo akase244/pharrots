@@ -17,6 +17,12 @@ module.exports = (robot) ->
                 if msg.match[1].toLowerCase() is 'cur' and releaseState.text() is 'Current Stable'
                     msg.send '1' 
                     msg.send releaseState.parent().attr('id').replace(/v/, '')
-                if msg.match[2].toLowerCase() is 'old' and releaseState.text() is 'Old Stable'
+                if msg.match[2].toLowerCase() is 'old'
                     msg.send '2' 
+                    msg.send releaseState.parent().attr('id').replace(/v/, '')
+                if releaseState.text() is 'Old Stable'
+                    msg.send '3' 
+                    msg.send releaseState.parent().attr('id').replace(/v/, '')
+                if msg.match[2].toLowerCase() is 'old' and releaseState.text() is 'Old Stable'
+                    msg.send '4' 
                     msg.send releaseState.parent().attr('id').replace(/v/, '')
