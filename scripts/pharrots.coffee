@@ -14,6 +14,11 @@ module.exports = (robot) ->
 
             $('.release-state').each ->
                 releaseState = $ @
-                if (msg.match[1] and msg.match[1].toLowerCase() is 'cur' and releaseState.text() is 'Current Stable') or (msg.match[1] and msg.match[1].toLowerCase() is 'old' and releaseState.text() is 'Old Stable')
-                    msg.send releaseState.parent().attr('id').replace(/v/, '')
+                if msg.match[1]
+                    if msg.match[1].toLowerCase() is 'cur'
+                        if releaseState.text() is 'Current Stable'
+                            msg.send releaseState.parent().attr('id').replace(/v/, '')
+                    if msg.match[1].toLowerCase() is 'old'
+                        if releaseState.text() is 'Old Stable'
+                            msg.send releaseState.parent().attr('id').replace(/v/, '')
 
