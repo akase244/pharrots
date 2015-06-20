@@ -17,5 +17,5 @@ module.exports = (robot) ->
 
             $('.release-state').each ->
                 releaseState = $ @
-                if msg.match[1] and releaseState.text() is 'Current Stable'
+                if releaseState.text() is 'Current Stable'
                     msg.send releaseState.parent().attr('id').replace(/v/, '')
